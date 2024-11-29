@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { motion } from "motion/react";
 
 const sponsors = [
@@ -15,24 +15,25 @@ export default function Home() {
         {sponsors.map((line, index) => (
           <motion.div
             key={index}
-            className="flex space-x-4" // Removed justify-center, keep flex for layout
-            initial={{ x: '0vw', opacity: 0 }} // Start from off-screen to the left with opacity 0
-            animate={{ x: '50vw', opacity: 1 }} // Move to the visible area (left edge) with full opacity
-            exit={{ x: '100vw', opacity: 0 }} // Move off-screen to the right with opacity 0
+            className="flex space-x-4"
+            initial={{ x: '0%', opacity: 0 }} // Start from off-screen to the left with opacity 0
+            animate={{ x: '50%', opacity: 1 }} // Move to the visible area (left edge) with full opacity
+            exit={{ x: '100%', opacity: 0 }} // Move off-screen to the right with opacity 0
             transition={{
               x: {
-                duration: 10, // Total duration of the animation
-                ease: 'linear',
+                duration: 10, // Total duration of the x-axis animation
+                ease: 'easeInOut',
                 keyframes: [
-                  '0vw', // Start from far left (fast entrance)
-                  '50vw',    // Move to the start of the visible area (slower)
-                  '100vw',  // Move to the right side (fast exit)
+                  '0%',
+                  '20%',
+                  '80%',
+                  '100%',
                 ],
               },
               opacity: {
-                duration: 10, // Short duration for the fade-in effect
+                duration: 10, // Duration for the fade-in/fade-out effect (same as x-axis)
                 ease: 'easeInOut',
-                keyframes: [0, 1, 0],
+                keyframes: [0, 1, 1, 0], // Fade in, hold, then fade out
               },
               delay: index * 0.5, // Staggered start for each line
             }}
